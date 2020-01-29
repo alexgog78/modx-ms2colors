@@ -1,0 +1,6 @@
+/.idea
+/core/components/ms2colors/ms2/**/*.*
+!/core/components/ms2colors/ms2/**/index.php
+!/core/components/ms2colors/ms2/**/*.example
+/assets/components/ms2colors/ms2/plugins/**/*.*
+!/assets/components/ms2colors/ms2/plugins/**/*.example

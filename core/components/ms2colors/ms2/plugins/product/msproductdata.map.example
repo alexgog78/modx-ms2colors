@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'fields' => [
+        'ms2color_general' => 0,
+        'ms2color_collection' => 0,
+    ],
+    'fieldMeta' => [
+        'ms2color_general' => [
+            'dbtype' => 'int',
+            'precision' => '10',
+            'attributes' => 'unsigned',
+            'phptype' => 'integer',
+            'null' => false,
+            'default' => 0,
+        ],
+        'ms2color_collection' => [
+            'dbtype' => 'int',
+            'precision' => '10',
+            'attributes' => 'unsigned',
+            'phptype' => 'integer',
+            'null' => false,
+            'default' => 0,
+        ],
+    ],
+];

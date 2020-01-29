@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="ms2colors" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" tablePrefix="ms2colors_" version="1.0">
+    <object class="ms2colorsColor" table="colors" extends="xPDOSimpleObject">
+        <field key="resource_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
+        <field key="description" dbtype="text" phptype="string" null="true"/>
+        <field key="image" dbtype="varchar" precision="255" phptype="string" null="true"/>
+        <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
+        <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
+        <!--Indexes-->
+        <index alias="resource_id" name="resource_id" primary="false" unique="false" type="BTREE">
+            <column key="resource_id" length="" collation="A" null="false"/>
+        </index>
+        <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
+            <column key="menuindex" length="" collation="A" null="false"/>
+        </index>
+        <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
+            <column key="is_active" length="" collation="A" null="false"/>
+        </index>
+        <!--Links-->
+        <aggregate alias="Resource" class="modResource" local="resource_id" foreign="id" cardinality="one" owner="local"/>
+        <!--Validation-->
+        <validation>
+            <rule field="name" name="preventBlank" type="xPDOValidationRule" rule="xPDOMinLengthValidationRule" value="1" message="field_required"/>
+            <rule field="name" name="unique" type="xPDOValidationRule" rule="validation.ms2ColorsValidatorUnique" excludeFields="resource_id" message="ms2colors.err_ae"/>
+        </validation>
+    </object>
+</model>
