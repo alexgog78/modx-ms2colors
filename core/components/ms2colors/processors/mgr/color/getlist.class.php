@@ -27,33 +27,14 @@ class ms2colorsColorGetListProcessor extends abstractObjectGetListProcessor
 
         $resourceId = $this->getProperty('resource_id');
         if (isset($resourceId)) {
-            $this->filterByResourceId($c, (int) $resourceId);
+            $this->filterByResourceId($c, (int)$resourceId);
         }
 
         $parentId = $this->getProperty('parent_id');
         if (isset($parentId)) {
-            $this->filterByParentId($c, (int) $parentId);
+            $this->filterByParentId($c, (int)$parentId);
         }
 
-        return $c;
-    }
-
-    public function prepareQueryAfterCount(xPDOQuery $c) {
-        $c = parent::prepareQueryAfterCount($c);
-        $c->select($this->modx->getSelectColumns('modResource', 'Resource', 'resource_', ['pagetitle']));
-        return $c;
-    }
-
-    /**
-     * @param xPDOQuery $c
-     * @param string $query
-     * @return xPDOQuery
-     */
-    protected function searchQuery(xPDOQuery $c, $query)
-    {
-        $c->where([
-            'name:LIKE' => '%' . $query . '%',
-        ]);
         return $c;
     }
 
@@ -78,20 +59,40 @@ class ms2colorsColorGetListProcessor extends abstractObjectGetListProcessor
     private function filterByParentId(xPDOQuery $c, int $parentId)
     {
         $parent = $this->modx->getObject('modResource', [
-            'id' => $parentId
+            'id' => $parentId,
         ]);
         if (!$parent) {
             return $c;
         }
 
         $parentIds = $this->modx->getParentIds($parentId, 10, [
-            'context' => $parent->context_key
+            'context' => $parent->context_key,
         ]);
         array_unshift($parentIds, $parentId);
 
         $c->where([
             'resource_id:IN' => $parentIds,
             'AND:resource_id:!=' => 0,
+        ]);
+        return $c;
+    }
+
+    public function prepareQueryAfterCount(xPDOQuery $c)
+    {
+        $c = parent::prepareQueryAfterCount($c);
+        $c->select($this->modx->getSelectColumns('modResource', 'Resource', 'resource_', ['pagetitle']));
+        return $c;
+    }
+
+    /**
+     * @param xPDOQuery $c
+     * @param string $query
+     * @return xPDOQuery
+     */
+    protected function searchQuery(xPDOQuery $c, $query)
+    {
+        $c->where([
+            'name:LIKE' => '%' . $query . '%',
         ]);
         return $c;
     }

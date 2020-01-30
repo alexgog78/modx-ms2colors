@@ -4,7 +4,7 @@
 
 /** @var ms2Colors $ms2Colors */
 $ms2Colors = $modx->getService('ms2colors', 'ms2Colors', MODX_CORE_PATH . 'components/ms2colors/model/ms2colors/', [
-    'ctx' => $modx->context->key
+    'ctx' => $modx->context->key,
 ]);
 if (!($ms2Colors instanceof ms2Colors)) {
     exit('Could not load ms2Colors');
