@@ -1,10 +1,10 @@
 <?php
 
-if (!class_exists('amValidatorUnique')) {
-    require_once MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/validation/unique.class.php';
+if (!$this->loadClass('abstractValidatorUnique', MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/validation/', true, true)) {
+    return false;
 }
 
-class ms2ColorsValidatorUnique extends amValidatorUnique
+class ms2ColorsValidatorUnique extends abstractValidatorUnique
 {
 
 }

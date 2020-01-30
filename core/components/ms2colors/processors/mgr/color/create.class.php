@@ -1,10 +1,10 @@
 <?php
 
-if (!$this->loadClass('create', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
+if (!$this->loadClass('abstractObjectCreateProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
     return false;
 }
 
-class ms2colorsColorCreateProcessor extends amObjectCreateProcessor
+class ms2colorsColorCreateProcessor extends abstractObjectCreateProcessor
 {
     /** @var string */
     public $classKey = 'ms2colorsColor';

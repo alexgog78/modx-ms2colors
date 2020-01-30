@@ -1,10 +1,6 @@
 <?php
 
-if (!class_exists('ms2ColorsMgrHandler')) {
-    require_once dirname(__FILE__) . '/abstract.class.php';
-}
-
-class ms2ColorsMgrMsProductHandler extends ms2ColorsMgrHandler
+class ms2ColorsMgrMsProductHandler extends abstractMgrHandler
 {
     /**
      * @param modManagerController $controller
