@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model package="ms2colors" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" tablePrefix="ms2colors_" version="1.0">
-    <object class="ms2colorsColor" table="colors" extends="xPDOSimpleObject">
+    <object class="ms2colorsColor" table="colors" extends="abstractSimpleObject">
         <field key="resource_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="description" dbtype="text" phptype="string" null="true"/>
