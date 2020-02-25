@@ -14,6 +14,7 @@ $modxEvent = $modx->event->name;
 switch ($modxEvent) {
     case 'ms2extOnGetProductLayout':
         /** @var modManagerController $controller */
+        $ms2Colors->mgrMsCategory->addLexicon($controller);
         $ms2Colors->mgrMsProduct->loadAssets($controller);
         break;
     case 'ms2extOnGetCategoryLayout':

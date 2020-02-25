@@ -4,8 +4,8 @@ miniShop2.plugin.ms2Colors = {
     //Product form
     getFields: function (config) {
         return {
-            ms2color_general: {xtype: 'ms2colors-combo-select-color', description: '<b>[[+ms2color_general]]</b>', resource_id: 0},
-            ms2color_collection: {xtype: 'ms2colors-combo-select-color', description: '<b>[[+ms2color_collection]]</b>', parent_id: config.record.parent},
+            color_general: {xtype: 'ms2colors-combo-select-color', fieldLabel: _('ms2colors.field.color_general'), description: '<b>[[+color_general]]</b>', resource_id: 0},
+            color_collection: {xtype: 'ms2colors-combo-select-color', fieldLabel: _('ms2colors.field.color_collection'), description: '<b>[[+color_collection]]</b>', parent_id: config.record.parent},
         }
     },
 

@@ -2,11 +2,11 @@
 
 return [
     'fields' => [
-        'ms2color_general' => 0,
-        'ms2color_collection' => 0,
+        'color_general' => 0,
+        'color_collection' => 0,
     ],
     'fieldMeta' => [
-        'ms2color_general' => [
+        'color_general' => [
             'dbtype' => 'int',
             'precision' => '10',
             'attributes' => 'unsigned',
@@ -14,13 +14,29 @@ return [
             'null' => false,
             'default' => 0,
         ],
-        'ms2color_collection' => [
+        'color_collection' => [
             'dbtype' => 'int',
             'precision' => '10',
             'attributes' => 'unsigned',
             'phptype' => 'integer',
             'null' => false,
             'default' => 0,
+        ],
+    ],
+    'aggregates' => [
+        'ms2colorGeneral' => [
+            'class' => 'ms2colorsColor',
+            'local' => 'color_general',
+            'foreign' => 'id',
+            'cardinality' => 'one',
+            'owner' => 'local',
+        ],
+        'ms2colorCollection' => [
+            'class' => 'ms2colorsColor',
+            'local' => 'color_collection',
+            'foreign' => 'id',
+            'cardinality' => 'one',
+            'owner' => 'local',
         ],
     ],
 ];
