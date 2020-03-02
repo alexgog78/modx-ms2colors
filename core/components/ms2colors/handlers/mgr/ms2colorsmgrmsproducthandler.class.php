@@ -1,6 +1,6 @@
 <?php
 
-class ms2ColorsMgrMsProductHandler extends abstractMgrHandler
+class ms2ColorsMgrMsProductHandler extends AbstractMgrHandler
 {
     /**
      * @param modManagerController $controller
@@ -8,6 +8,6 @@ class ms2ColorsMgrMsProductHandler extends abstractMgrHandler
     public function loadAssets(modManagerController $controller)
     {
         parent::loadAssets($controller);
-        $controller->addJavascript($this->config['ms2JsUrl'] . 'mgr/combo/color.select.js');
+        $controller->addJavascript($this->config['ms2AssetsUrl'] . 'combo/color.select.js');
     }
 }

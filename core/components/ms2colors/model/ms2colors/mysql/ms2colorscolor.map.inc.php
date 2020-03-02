@@ -2,9 +2,9 @@
 
 $xpdo_meta_map['ms2colorsColor'] = [
     'package' => 'ms2colors',
-    'version' => '1.0',
+    'version' => '1.1',
     'table' => 'colors',
-    'extends' => 'xPDOSimpleObject',
+    'extends' => 'AbstractSimpleObject',
     'tableMeta' => [
         'engine' => 'MyISAM',
     ],
