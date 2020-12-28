@@ -1,7 +1,7 @@
 <?php
 
 $xpdo_meta_map = [
-    'AbstractSimpleObject' => [
+    'xPDOSimpleObject' => [
         0 => 'ms2colorsColor',
     ],
 ];

@@ -4,9 +4,9 @@ $xpdo_meta_map['ms2colorsColor'] = [
     'package' => 'ms2colors',
     'version' => '1.1',
     'table' => 'colors',
-    'extends' => 'AbstractSimpleObject',
+    'extends' => 'xPDOSimpleObject',
     'tableMeta' => [
-        'engine' => 'MyISAM',
+        'engine' => 'InnoDB',
     ],
     'fields' => [
         'resource_id' => 0,
@@ -100,12 +100,29 @@ $xpdo_meta_map['ms2colorsColor'] = [
         ],
     ],
     'aggregates' => [
-        'Resource' => [
-            'class' => 'modResource',
+        'Category' => [
+            'class' => 'msCategory',
             'local' => 'resource_id',
             'foreign' => 'id',
             'cardinality' => 'one',
             'owner' => 'local',
+            'criteria' => [
+                'foreign' => [
+                    'is_active' => 'msCategory',
+                ],
+            ],
+        ],
+        'Product' => [
+            'class' => 'msProduct',
+            'local' => 'resource_id',
+            'foreign' => 'id',
+            'cardinality' => 'one',
+            'owner' => 'local',
+            'criteria' => [
+                'foreign' => [
+                    'is_active' => 'msProduct',
+                ],
+            ],
         ],
     ],
     'validation' => [
@@ -116,12 +133,6 @@ $xpdo_meta_map['ms2colorsColor'] = [
                     'rule' => 'xPDOMinLengthValidationRule',
                     'value' => '1',
                     'message' => 'field_required',
-                ],
-                'unique' => [
-                    'type' => 'xPDOValidationRule',
-                    'rule' => 'validation.ms2ColorsValidatorUnique',
-                    'excludeFields' => 'resource_id',
-                    'message' => 'ms2colors.err_ae',
                 ],
             ],
         ],

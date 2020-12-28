@@ -1,19 +1,11 @@
 <?php
 
-if (!$this->loadClass('AbstractObjectGetListProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
-    return false;
-}
+require_once dirname(__DIR__) . '/getlist.class.php';
 
-class ms2colorsColorGetListProcessor extends AbstractObjectGetListProcessor
+class ms2colorsColorGetListProcessor extends ms2ColorsGetListProcessor
 {
     /** @var string */
     public $classKey = 'ms2colorsColor';
-
-    /** @var string */
-    public $objectType = 'ms2colors';
-
-    /** @var string */
-    public $defaultSortField = 'menuindex';
 
     /**
      * @param xPDOQuery $c
@@ -22,19 +14,29 @@ class ms2colorsColorGetListProcessor extends AbstractObjectGetListProcessor
     public function prepareQueryBeforeCount(xPDOQuery $c)
     {
         $c = parent::prepareQueryBeforeCount($c);
-
-        $c->leftJoin('modResource', 'Resource');
+        $c->leftJoin('msCategory', 'Category');
 
         $resourceId = $this->getProperty('resource_id');
         if (isset($resourceId)) {
             $this->filterByResourceId($c, (int)$resourceId);
         }
 
-        $parentId = $this->getProperty('parent_id');
-        if (isset($parentId)) {
-            $this->filterByParentId($c, (int)$parentId);
+        $categoryId = $this->getProperty('category_id');
+        if (isset($categoryId)) {
+            $this->filterByCategoryId($c, (int)$categoryId);
         }
 
+        return $c;
+    }
+
+    /**
+     * @param xPDOQuery $c
+     * @return xPDOQuery
+     */
+    public function prepareQueryAfterCount(xPDOQuery $c)
+    {
+        $c = parent::prepareQueryAfterCount($c);
+        $c->select($this->modx->getSelectColumns('msCategory', 'Category', 'category_', ['pagetitle']));
         return $c;
     }
 
@@ -56,43 +58,23 @@ class ms2colorsColorGetListProcessor extends AbstractObjectGetListProcessor
      * @param int $parentId
      * @return xPDOQuery
      */
-    private function filterByParentId(xPDOQuery $c, int $parentId)
+    private function filterByCategoryId(xPDOQuery $c, int $categoryId)
     {
         $parent = $this->modx->getObject('modResource', [
-            'id' => $parentId,
+            'id' => $categoryId,
         ]);
         if (!$parent) {
             return $c;
         }
 
-        $parentIds = $this->modx->getParentIds($parentId, 10, [
+        $parentIds = $this->modx->getParentIds($categoryId, 10, [
             'context' => $parent->context_key,
         ]);
-        array_unshift($parentIds, $parentId);
+        array_unshift($parentIds, $categoryId);
 
         $c->where([
             'resource_id:IN' => $parentIds,
             'AND:resource_id:!=' => 0,
-        ]);
-        return $c;
-    }
-
-    public function prepareQueryAfterCount(xPDOQuery $c)
-    {
-        $c = parent::prepareQueryAfterCount($c);
-        $c->select($this->modx->getSelectColumns('modResource', 'Resource', 'resource_', ['pagetitle']));
-        return $c;
-    }
-
-    /**
-     * @param xPDOQuery $c
-     * @param string $query
-     * @return xPDOQuery
-     */
-    protected function searchQuery(xPDOQuery $c, $query)
-    {
-        $c->where([
-            'name:LIKE' => '%' . $query . '%',
         ]);
         return $c;
     }

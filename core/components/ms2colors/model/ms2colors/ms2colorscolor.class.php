@@ -1,29 +1,28 @@
 <?php
 
-if (!$this->loadClass('AbstractSimpleObject', MODX_CORE_PATH . 'components/abstractmodule/model/abstractmodule/', true, true)) {
-    return false;
-}
+require_once dirname(__DIR__) . '/helpers/menuindex.trait.php';
 
-class ms2colorsColor extends AbstractSimpleObject
+class ms2colorsColor extends xPDOSimpleObject
 {
-    /** @var array */
-    protected $booleanFields = [
-        'is_active',
-    ];
+    use ms2ColorsModelHelperMenuindex;
 
     /**
-     * @param xPDOQuery|null $query
+     * @param null $cacheFlag
+     * @return bool
+     */
+    public function save($cacheFlag = null)
+    {
+        $this->setMenuindex();
+        return parent::save($cacheFlag);
+    }
+
+    /**
      * @return array
      */
-    public function loadActiveCollection(xPDOQuery $query = null)
+    protected function getMenuindexConditions()
     {
-        if (!$query) {
-            $query = $this->xpdo->newQuery($this->_class);
-        }
-        $query->sortby('menuindex', 'ASC');
-        $query->where([
-            'is_active' => 1,
-        ]);
-        return $this->loadCollection($this->xpdo, $this->_class, $query);
+        return [
+            'resource_id' => $this->get('resource_id'),
+        ];
     }
 }

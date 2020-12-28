@@ -1,16 +1,11 @@
 <?php
 
-if (!$this->loadClass('AbstractObjectUpdateProcessor', MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/object/', true, true)) {
-    return false;
-}
+require_once dirname(__DIR__) . '/update.class.php';
 
-class ms2colorsColorUpdateProcessor extends AbstractObjectUpdateProcessor
+class ms2colorsColorUpdateProcessor extends ms2ColorsUpdateProcessor
 {
     /** @var string */
     public $classKey = 'ms2colorsColor';
-
-    /** @var string */
-    public $objectType = 'ms2colors';
 }
 
 return 'ms2colorsColorUpdateProcessor';
