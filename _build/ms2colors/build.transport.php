@@ -35,9 +35,6 @@ require_once PKG_BUILD_TRANSPORT_PATH . 'plugins.inc.php';
 /** modCategory */
 require_once PKG_BUILD_TRANSPORT_PATH . 'category.inc.php';
 
-/** ms2extendTab */
-require_once PKG_BUILD_TRANSPORT_PATH . 'tabs.inc.php';
-
 /** Resolvers */
 require_once PKG_BUILD_TRANSPORT_PATH . 'resolvers.inc.php';
 

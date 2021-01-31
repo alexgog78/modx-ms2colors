@@ -9,6 +9,9 @@
 if ($transport->xpdo) {
     $modx = &$transport->xpdo;
 
+    /** @var ms2Extend $ms2Extend */
+    $ms2Extend = $modx->getService('ms2extend', 'ms2Extend', MODX_CORE_PATH . 'components/ms2extend/model/');
+
     $tabs = [
         'ms2extendProductTab' => [
             'name' => 'ms2Colors',
@@ -16,7 +19,6 @@ if ($transport->xpdo) {
                 'ms2colors_common_id',
                 'ms2colors_collection_id',
             ],
-            'is_active' => 1,
         ],
         'ms2extendCategoryTab' => [
             'name' => 'ms2Colors',
@@ -24,7 +26,6 @@ if ($transport->xpdo) {
             'xtypes' => [
                 'ms2colors-grid-category-color',
             ],
-            'is_active' => 1,
         ],
         'ms2extendSettingsTab' => [
             'name' => 'ms2Colors',
@@ -32,26 +33,27 @@ if ($transport->xpdo) {
             'xtypes' => [
                 'ms2colors-grid-settings-color',
             ],
-            'is_active' => 1,
         ],
     ];
 
-    switch ($options[xPDOTransport::PACKAGE_ACTION]) {
-        case xPDOTransport::ACTION_INSTALL:
-        case xPDOTransport::ACTION_UPGRADE:
-            /** @var ms2Extend $service */
-            $ms2Extend = $modx->getService('ms2extend', 'ms2Extend', $modx->getOption('core_path') . 'components/ms2extend/model/ms2extend/', []);
-            foreach ($tabs as $tabClass => $tabData) {
-                if ($tab = $modx->getObject($tabClass, ['name' => $tabData['name']])) {
-                    continue;
+    foreach ($tabs as $classKey => $data) {
+        $tab = $modx->getObject($classKey, ['name' => $data['name']]);
+
+        switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+            case xPDOTransport::ACTION_INSTALL:
+            case xPDOTransport::ACTION_UPGRADE:
+                if (!$tab) {
+                    $tab = $modx->newObject($classKey);
                 }
-                $tab = $modx->newObject($tabClass);
-                $tab->fromArray($tabData);
+                $tab->fromArray(array_merge([
+                    'is_active' => 1,
+                ], $data), '', true, true);
                 $tab->save();
-            }
-            break;
-        case xPDOTransport::ACTION_UNINSTALL:
-            break;
+                break;
+            case xPDOTransport::ACTION_UNINSTALL:
+                $tab->remove();
+                break;
+        }
     }
 }
 return true;
