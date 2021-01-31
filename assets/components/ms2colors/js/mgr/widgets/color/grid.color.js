@@ -18,13 +18,13 @@ ms2Colors.grid.color = function (config) {
             'name',
             'description',
             'image',
-            'menuindex',
+            'sort_order',
             'is_active',
         ],
         columns: [
             this.getGridColumn('id', {header: _('id'), width: 0.05}),
-            this.getGridColumn('image', {header: _('ms2colors_color_image'), width: 0.1, renderer: ms2Colors.renderer.image}),
             this.getGridColumn('name', {header: _('ms2colors_color_name'), width: 0.7, editor: {xtype: 'textfield'}}),
+            this.getGridColumn('image', {header: _('ms2colors_color_image'), width: 0.2, renderer: ms2Colors.renderer.image}),
             this.getGridColumn('is_active', {header: _('ms2colors_color_active'), width: 0.1, editor: {xtype: 'combo-boolean', renderer: 'boolean'}, renderer: ms2Colors.renderer.boolean}),
         ],
         recordActions: {

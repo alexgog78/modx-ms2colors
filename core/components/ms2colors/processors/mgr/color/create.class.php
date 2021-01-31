@@ -1,9 +1,13 @@
 <?php
 
-require_once dirname(__DIR__) . '/create.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/create.class.php';
 
-class ms2colorsColorCreateProcessor extends ms2ColorsCreateProcessor
+class ms2colorsColorCreateProcessor extends abstractModuleCreateProcessor
 {
+    /** @var string */
+    public $objectType = 'ms2colors';
+
     /** @var string */
     public $classKey = 'ms2colorsColor';
 }

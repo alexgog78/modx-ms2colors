@@ -4,7 +4,7 @@ $xpdo_meta_map['ms2colorsColor'] = [
     'package' => 'ms2colors',
     'version' => '1.1',
     'table' => 'colors',
-    'extends' => 'xPDOSimpleObject',
+    'extends' => 'abstractSimpleObject',
     'tableMeta' => [
         'engine' => 'InnoDB',
     ],
@@ -13,7 +13,7 @@ $xpdo_meta_map['ms2colorsColor'] = [
         'name' => NULL,
         'description' => NULL,
         'image' => NULL,
-        'menuindex' => 0,
+        'sort_order' => 0,
         'is_active' => 0,
     ],
     'fieldMeta' => [
@@ -42,7 +42,7 @@ $xpdo_meta_map['ms2colorsColor'] = [
             'phptype' => 'string',
             'null' => true,
         ],
-        'menuindex' => [
+        'sort_order' => [
             'dbtype' => 'int',
             'precision' => '10',
             'attributes' => 'unsigned',
@@ -72,13 +72,13 @@ $xpdo_meta_map['ms2colorsColor'] = [
                 ],
             ],
         ],
-        'menuindex' => [
-            'alias' => 'menuindex',
+        'sort_order' => [
+            'alias' => 'sort_order',
             'primary' => false,
             'unique' => false,
             'type' => 'BTREE',
             'columns' => [
-                'menuindex' => [
+                'sort_order' => [
                     'length' => '',
                     'collation' => 'A',
                     'null' => false,
@@ -108,7 +108,7 @@ $xpdo_meta_map['ms2colorsColor'] = [
             'owner' => 'local',
             'criteria' => [
                 'foreign' => [
-                    'is_active' => 'msCategory',
+                    'class_key' => 'msCategory',
                 ],
             ],
         ],
@@ -120,7 +120,7 @@ $xpdo_meta_map['ms2colorsColor'] = [
             'owner' => 'local',
             'criteria' => [
                 'foreign' => [
-                    'is_active' => 'msProduct',
+                    'class_key' => 'msProduct',
                 ],
             ],
         ],

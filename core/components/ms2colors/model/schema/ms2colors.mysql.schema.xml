@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="ms2colors" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" tablePrefix="ms2colors_" phpdoc-package="ms2colors" phpdoc-subpackage="" version="1.1">
-    <object class="ms2colorsColor" table="colors" extends="xPDOSimpleObject">
+<model package="ms2colors" baseClass="abstractObject" platform="mysql" defaultEngine="InnoDB" tablePrefix="ms2colors_" phpdoc-package="ms2colors" phpdoc-subpackage="" version="1.1">
+    <object class="ms2colorsColor" table="colors" extends="abstractSimpleObject">
         <field key="resource_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="description" dbtype="text" phptype="string" null="true"/>
         <field key="image" dbtype="varchar" precision="255" phptype="string" null="true"/>
-        <field key="menuindex" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
+        <field key="sort_order" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
         <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
         <!--Indexes-->
         <index alias="resource_id" name="resource_id" primary="false" unique="false" type="BTREE">
             <column key="resource_id" length="" collation="A" null="false"/>
         </index>
-        <index alias="menuindex" name="menuindex" primary="false" unique="false" type="BTREE">
-            <column key="menuindex" length="" collation="A" null="false"/>
+        <index alias="sort_order" name="sort_order" primary="false" unique="false" type="BTREE">
+            <column key="sort_order" length="" collation="A" null="false"/>
         </index>
         <index alias="is_active" name="is_active" primary="false" unique="false" type="BTREE">
             <column key="is_active" length="" collation="A" null="false"/>
         </index>
         <!--Links-->
         <aggregate alias="Category" class="msCategory" local="resource_id" foreign="id" cardinality="one" owner="local">
-            <criteria target="foreign"><![CDATA[{"is_active": "msCategory"}]]></criteria>
+            <criteria target="foreign"><![CDATA[{"class_key": "msCategory"}]]></criteria>
         </aggregate>
         <aggregate alias="Product" class="msProduct" local="resource_id" foreign="id" cardinality="one" owner="local">
-            <criteria target="foreign"><![CDATA[{"is_active": "msProduct"}]]></criteria>
+            <criteria target="foreign"><![CDATA[{"class_key": "msProduct"}]]></criteria>
         </aggregate>
         <!--Validation-->
         <validation>

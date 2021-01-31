@@ -16,7 +16,7 @@ Ext.extend(ms2Colors.window.color, ms2Colors.window.abstract, {
         ms2Colors.window.color.superclass.renderForm.call(this);
 
         let imagePreviewField = Ext.getCmp('color-image-preview');
-        let src = ms2Colors.config.cssUrl + 'mgr/core/no-photo.png';
+        let src = abstractModule.config.cssUrl + 'mgr/no-photo.png';
         if (this.record.image) {
             src = this.record.image;
         }

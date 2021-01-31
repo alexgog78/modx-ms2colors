@@ -1,9 +1,13 @@
 <?php
 
-require_once dirname(__DIR__) . '/getlist.class.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/mgr/getlist.class.php';
 
-class ms2colorsColorGetListProcessor extends ms2ColorsGetListProcessor
+class ms2colorsColorGetListProcessor extends abstractModuleGetListProcessor
 {
+    /** @var string */
+    public $objectType = 'ms2colors';
+
     /** @var string */
     public $classKey = 'ms2colorsColor';
 
@@ -37,6 +41,8 @@ class ms2colorsColorGetListProcessor extends ms2ColorsGetListProcessor
     {
         $c = parent::prepareQueryAfterCount($c);
         $c->select($this->modx->getSelectColumns('msCategory', 'Category', 'category_', ['pagetitle']));
+        $c->sortby('resource_id', 'ASC');
+        $c->sortby('sort_order', 'ASC');
         return $c;
     }
 

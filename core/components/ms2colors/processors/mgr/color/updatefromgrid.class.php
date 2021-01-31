@@ -1,11 +1,12 @@
 <?php
 
 require_once __DIR__ . '/update.class.php';
-require_once dirname(dirname(__DIR__)) . '/helpers/gridupdate.trait.php';
+/** @noinspection PhpIncludeInspection */
+require_once MODX_CORE_PATH . 'components/abstractmodule/processors/helpers/gridupdate.trait.php';
 
 class ms2colorsColorUpdateFromGridProcessor extends ms2colorsColorUpdateProcessor
 {
-    use ms2ColorsProcessorHelperGridUpdate;
+    use abstractModuleProcessorHelperGridUpdate;
 }
 
 return 'ms2colorsColorUpdateFromGridProcessor';
