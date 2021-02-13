@@ -18,7 +18,7 @@ class ms2ColorsEventms2extendOnGetProductLayout extends abstractModuleEvent
         $this->controller = $scriptProperties['controller'];
     }
 
-    public function run()
+    protected function handleEvent()
     {
         $this->controller->addLexiconTopic($this->service::PKG_NAMESPACE . ':default');
         $this->controller->addLexiconTopic($this->service::PKG_NAMESPACE . ':color');

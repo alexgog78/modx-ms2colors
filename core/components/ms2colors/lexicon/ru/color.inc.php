@@ -8,3 +8,6 @@ $_lang[$prefix . 'active'] = 'Активный';
 $_lang[$prefix . 'image'] = 'Изображение';
 $_lang[$prefix . 'common'] = 'Общий цвет';
 $_lang[$prefix . 'collection'] = 'Цвет коллекции';
+
+$_lang['mse2_filter_ms_ms2colors_collection_id'] = 'Общий цвет';
+$_lang['mse2_filter_ms_ms2colors_common_id'] = 'Цвет коллекции';

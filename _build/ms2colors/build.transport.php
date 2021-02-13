@@ -29,6 +29,12 @@ require_once PKG_BUILD_TRANSPORT_PATH . 'settings.inc.php';
 /** modMediaSource */
 require_once PKG_BUILD_TRANSPORT_PATH . 'sources.inc.php';
 
+/** modChunk */
+require_once PKG_BUILD_TRANSPORT_PATH . 'chunks.inc.php';
+
+/** modSnippet */
+require_once PKG_BUILD_TRANSPORT_PATH . 'snippets.inc.php';
+
 /** modPlugin */
 require_once PKG_BUILD_TRANSPORT_PATH . 'plugins.inc.php';
 
