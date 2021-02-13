@@ -10,6 +10,10 @@ return [
         'static_file' => 'ms2colors.product.row.tpl',
     ],
     [
+        'name' => 'ms2colors.filter.outer',
+        'static_file' => 'ms2colors.filter.outer.tpl',
+    ],
+    [
         'name' => 'ms2colors.filter.color',
         'static_file' => 'ms2colors.filter.color.tpl',
     ],

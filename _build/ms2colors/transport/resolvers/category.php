@@ -17,6 +17,7 @@ if ($transport->xpdo) {
                 'name:IN' => [
                     'ms2colors.product.content',
                     'ms2colors.product.row',
+                    'ms2colors.filter.outer',
                     'ms2colors.filter.color',
                 ],
             ]);
