@@ -7,6 +7,7 @@
         <field key="image" dbtype="varchar" precision="255" phptype="string" null="true"/>
         <field key="sort_order" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
         <field key="is_active" dbtype="tinyint" precision="1" attributes="unsigned" phptype="boolean" null="false" default="0"/>
+        <field key="properties" dbtype="text" phptype="json" null="true"/>
         <!--Indexes-->
         <index alias="resource_id" name="resource_id" primary="false" unique="false" type="BTREE">
             <column key="resource_id" length="" collation="A" null="false"/>

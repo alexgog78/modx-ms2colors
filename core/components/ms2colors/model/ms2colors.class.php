@@ -21,7 +21,7 @@ class ms2Colors extends abstractModule
     protected function setConfig($config = [])
     {
         parent::setConfig($config);
-        $this->config['fileSource'] = $this->modx->getOption(self::PKG_NAMESPACE . '_file_source');
+        $this->config['fileSource'] = $this->getOption('file_source');
         $this->config['ms2assetsUrl'] = $this->assetsUrl . 'ms2/';
     }
 }

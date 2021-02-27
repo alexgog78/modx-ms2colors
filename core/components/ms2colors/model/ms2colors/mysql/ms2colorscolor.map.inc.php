@@ -15,6 +15,7 @@ $xpdo_meta_map['ms2colorsColor'] = [
         'image' => NULL,
         'sort_order' => 0,
         'is_active' => 0,
+        'properties' => NULL,
     ],
     'fieldMeta' => [
         'resource_id' => [
@@ -56,6 +57,11 @@ $xpdo_meta_map['ms2colorsColor'] = [
             'phptype' => 'boolean',
             'null' => false,
             'default' => 0,
+        ],
+        'properties' => [
+            'dbtype' => 'text',
+            'phptype' => 'json',
+            'null' => true,
         ],
     ],
     'indexes' => [

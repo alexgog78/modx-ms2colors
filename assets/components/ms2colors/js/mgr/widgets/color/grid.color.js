@@ -20,6 +20,7 @@ ms2Colors.grid.color = function (config) {
             'image',
             'sort_order',
             'is_active',
+            'properties',
         ],
         columns: [
             this.getGridColumn('id', {header: _('id'), width: 0.05}),
