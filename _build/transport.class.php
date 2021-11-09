@@ -171,6 +171,14 @@ class buildTransport
                 'static_file' => '',
             ]), '', true, true);
 
+            array_walk($data['properties'], function (& $propertyData) {
+                $propertyData = array_merge([
+                    'desc' => $this->packageName . '_property_' . strtolower($propertyData['name']),
+                    'lexicon' => $this->packageName . ':property',
+                ], $propertyData);
+            });
+            $snippet->setProperties($data['properties']);
+
             $vehicle = $this->builder->createVehicle($snippet, [
                 xPDOTransport::PRESERVE_KEYS => false,
                 xPDOTransport::UPDATE_OBJECT => true,
