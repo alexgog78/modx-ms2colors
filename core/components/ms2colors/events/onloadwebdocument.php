@@ -1,6 +1,6 @@
 <?php
 
-class ms2ColorsEventOnLoadWebDocument extends abstractModuleEvent
+class ms2ColorsEventOnLoadWebDocument extends abstractModuleWebEvent
 {
     /** @var modResource */
     private $resource;
@@ -23,23 +23,28 @@ class ms2ColorsEventOnLoadWebDocument extends abstractModuleEvent
      */
     protected function checkPermissions()
     {
-        if ($this->resource->get('class_key') != 'msProduct') {
+        if (!$this->resource instanceof msProduct) {
             return false;
         }
         return parent::checkPermissions();
     }
 
-    protected function handleEvent()
+    protected function run()
     {
         $this->modx->lexicon->load('ms2colors:color');
+
         $colorCommon = $this->resource->getOne('ms2colorCommon');
         if ($colorCommon) {
-            $this->modx->setPlaceholders($colorCommon->toArray(), 'ms2colors_common.');
+            $colorCommonData = $colorCommon->toArray('ms2colors_common_');
+            $this->resource->fromArray($colorCommonData);
+            $this->modx->setPlaceholders($colorCommonData);
         }
 
         $colorCollection = $this->resource->getOne('ms2colorCollection');
         if ($colorCollection) {
-            $this->modx->setPlaceholders($colorCollection->toArray(), 'ms2colors_collection.');
+            $colorCollectionData = $colorCommon->toArray('ms2colors_collection_');
+            $this->resource->fromArray($colorCollectionData);
+            $this->modx->setPlaceholders($colorCollectionData);
         }
     }
 }

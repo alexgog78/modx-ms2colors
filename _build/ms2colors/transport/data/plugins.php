@@ -3,11 +3,11 @@
 return [
     [
         'name' => 'ms2Colors',
-        'static_file' => 'ms2colors.php',
+        'static_file' => PKG_ELEMENTS_PATH . 'plugins/ms2colors.php',
         'events' => [
-            'ms2extendOnGetCategoryLayout',
-            'ms2extendOnGetProductLayout',
-            'ms2extendOnGetSettingsLayout',
+            'ms2extendOnGetCategoryTabs',
+            'ms2extendOnGetProductTabs',
+            'ms2extendOnGetSettingsTabs',
         ],
     ],
 ];

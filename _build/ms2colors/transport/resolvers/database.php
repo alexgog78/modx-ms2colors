@@ -11,14 +11,17 @@ if ($transport->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
-            /** @var ms2Colors $service */
+            /**
+             * @var ms2Colors $service
+             * @var xPDOManager $manager
+             */
             $service = $modx->getService('ms2colors', 'ms2Colors', MODX_CORE_PATH . 'components/ms2colors/model/');
-            /** @var xPDOManager $manager */
             $manager = $modx->getManager();
             $mapFile = $service->modelPath . $service::PKG_NAMESPACE . '/metadata.mysql.php';
+
             /**
-             * @noinspection PhpIncludeInspection
              * @var $xpdo_meta_map
+             * @noinspection PhpIncludeInspection
              */
             include $mapFile;
             foreach ($xpdo_meta_map as $baseClass => $extends) {

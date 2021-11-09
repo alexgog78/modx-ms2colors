@@ -3,18 +3,18 @@
 return [
     [
         'name' => 'ms2colors.product.content',
-        'static_file' => 'ms2colors.product.content.tpl',
+        'static_file' => PKG_ELEMENTS_PATH . 'chunks/ms2colors.product.content.tpl',
     ],
     [
         'name' => 'ms2colors.product.row',
-        'static_file' => 'ms2colors.product.row.tpl',
+        'static_file' => PKG_ELEMENTS_PATH . 'chunks/ms2colors.product.row.tpl',
     ],
     [
         'name' => 'ms2colors.filter.outer',
-        'static_file' => 'ms2colors.filter.outer.tpl',
+        'static_file' => PKG_ELEMENTS_PATH . 'chunks/ms2colors.filter.outer.tpl',
     ],
     [
         'name' => 'ms2colors.filter.color',
-        'static_file' => 'ms2colors.filter.color.tpl',
+        'static_file' => PKG_ELEMENTS_PATH . 'chunks/ms2colors.filter.color.tpl',
     ],
 ];

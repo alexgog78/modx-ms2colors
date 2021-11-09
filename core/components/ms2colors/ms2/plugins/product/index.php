@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'xpdo_meta_map' => [
+    'map' => [
         'msProductData' => require_once __DIR__ . '/msproductdata.map.inc.php',
     ],
     'manager' => [

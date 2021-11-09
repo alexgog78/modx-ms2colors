@@ -7,6 +7,9 @@ class ms2colorsColor extends abstractSimpleObject
     /** @var bool */
     protected $timestamps = false;
 
+    /** @var bool */
+    protected $user = false;
+
     /**
      * @return array
      */

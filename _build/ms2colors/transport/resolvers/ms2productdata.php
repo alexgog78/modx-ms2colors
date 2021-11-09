@@ -11,9 +11,11 @@ if ($transport->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
-            /** @var miniShop2 $miniShop2 */
+            /**
+             * @var miniShop2 $miniShop2
+             * @var xPDOManager $manager
+             */
             $miniShop2 = $modx->getService('miniShop2');
-            /** @var xPDOManager $manager */
             $manager = $modx->getManager();
 
             $tableClass = 'msProductData';

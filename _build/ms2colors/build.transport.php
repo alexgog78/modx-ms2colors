@@ -2,50 +2,41 @@
 
 /**
  * @var modX $modx
+ * @var buildTransport
  */
 require_once dirname(__DIR__) . '/modx.php';
+require_once dirname(__DIR__) . '/transport.class.php';
 require_once __DIR__ . '/build.config.php';
 
-/**
- * @var modPackageBuilder $builder
- */
-$builder = $modx->loadClass('transport.modPackageBuilder', '', false, true);
-$builder = new modPackageBuilder($modx);
-
-/**
- * @var ms2Colors $service
- */
-$service = $modx->getService(PKG_NAME_LOWER, PKG_NAME, PKG_MODEL_PATH);
-
-/** Creating package */
-require_once PKG_BUILD_TRANSPORT_PATH . 'package.inc.php';
-
-/** Files */
-require_once PKG_BUILD_TRANSPORT_PATH . 'files.inc.php';
-
-/** modSystemSetting */
-require_once PKG_BUILD_TRANSPORT_PATH . 'settings.inc.php';
-
-/** modMediaSource */
-require_once PKG_BUILD_TRANSPORT_PATH . 'sources.inc.php';
-
-/** modChunk */
-require_once PKG_BUILD_TRANSPORT_PATH . 'chunks.inc.php';
-
-/** modSnippet */
-require_once PKG_BUILD_TRANSPORT_PATH . 'snippets.inc.php';
-
-/** modPlugin */
-require_once PKG_BUILD_TRANSPORT_PATH . 'plugins.inc.php';
-
-/** modCategory */
-require_once PKG_BUILD_TRANSPORT_PATH . 'category.inc.php';
-
-/** Resolvers */
-require_once PKG_BUILD_TRANSPORT_PATH . 'resolvers.inc.php';
-
-/** Create .zip file */
-$builder->pack();
-$modx->log(modX::LOG_LEVEL_INFO, 'Package transport  zip created');
+$build = new buildTransport($modx);
+$build->createPackage(PKG_NAME_LOWER, PKG_VERSION, PKG_RELEASE)
+    ->registerNamespace()
+    ->addAttributes([
+        'changelog' => file_get_contents(PKG_CORE_PATH . 'docs/changelog.txt'),
+        'license' => file_get_contents(PKG_CORE_PATH . 'docs/license.txt'),
+        'readme' => file_get_contents(PKG_CORE_PATH . 'docs/readme.txt'),
+        'requires' => [
+            'php' => '>=7.0',
+            'modx' => '>=2.4',
+            'abstractModule' => '>=1.1.0',
+            'ms2Extend' => '>=1.2.0',
+        ],
+    ])
+    ->addCoreFiles('components/' . PKG_NAME_LOWER)
+    ->addAssetsFiles('components/' . PKG_NAME_LOWER)
+    ->addSettings(include PKG_BUILD_TRANSPORT_PATH . 'data/settings.php')
+    ->addChunks(include PKG_BUILD_TRANSPORT_PATH . 'data/chunks.php')
+    ->addSnippets(include PKG_BUILD_TRANSPORT_PATH . 'data/snippets.php')
+    ->addPlugins(include PKG_BUILD_TRANSPORT_PATH . 'data/plugins.php')
+    ->addMediaSources(include PKG_BUILD_TRANSPORT_PATH . 'data/mediasources.php')
+    ->addCategory(PKG_NAME)
+    ->addResolver(PKG_BUILD_TRANSPORT_PATH . 'resolvers/database.php')
+    ->addResolver(PKG_BUILD_TRANSPORT_PATH . 'resolvers/mediafolder.php')
+    ->addResolver(PKG_BUILD_TRANSPORT_PATH . 'resolvers/category.php')
+    ->addResolver(PKG_BUILD_TRANSPORT_PATH . 'resolvers/settings.php')
+    ->addResolver(PKG_BUILD_TRANSPORT_PATH . 'resolvers/ms2productdata.php')
+    ->addResolver(PKG_BUILD_TRANSPORT_PATH . 'resolvers/ms2plugins.php')
+    ->addResolver(PKG_BUILD_TRANSPORT_PATH . 'resolvers/ms2extendtabs.php')
+    ->pack();
 
 exit();

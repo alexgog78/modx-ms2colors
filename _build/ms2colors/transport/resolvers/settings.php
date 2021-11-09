@@ -19,10 +19,6 @@ if ($transport->xpdo) {
             ]);
             $setting->set('value', $source->id);
             $setting->save();
-
-            //$source->createContainer('zzz', '/');
-            @mkdir(MODX_ASSETS_PATH . 'media/');
-            @mkdir(MODX_ASSETS_PATH . 'media/ms2colors/');
             break;
         case xPDOTransport::ACTION_UNINSTALL:
             break;
